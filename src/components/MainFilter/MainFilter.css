@@ -1,0 +1,33 @@
+.main-filter-container{
+    width: 80%;
+    height: 55px;
+    padding: 2px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.main-filter{
+    background-color: white;
+    width: 100%;
+    border: none;
+}
+
+.main-filter:focus{
+    outline: none;
+    border: none;
+}
+
+.teste{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+
+.main-filter-button{
+    width: 146px;
+    height: 100%;
+    background-color: #1E86FF;
+    border-radius: 4px;
+    color: white;
+}
