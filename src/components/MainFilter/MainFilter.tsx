@@ -15,7 +15,7 @@ function MainFilter(props:{onFilter:Function}){
 
     return (
         <div className="main-filter-container d-flex align-items-center">
-            <FontAwesomeIcon icon={faBriefcase}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faBriefcase} style={{color:'#B9BDCF',marginLeft:'5px'}}></FontAwesomeIcon>
             <input name="filter" placeholder="Title, companies, expertise or benefits" className="main-filter" value={filterValue} onChange={onFilterChange}></input>
             <button onClick={() => {onClickFilter()}} className="main-filter-button">Search</button>
         </div>

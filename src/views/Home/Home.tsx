@@ -90,8 +90,8 @@ function Home(){
             <div className="main-search-container d-flex align-items-center justify-content-center">
                 <MainFilter onFilter={onFilterByJobProps}></MainFilter>
             </div>
-            <div className="d-flex w-100">
-                <div style={{width:'30%'}}>
+            <div className="d-flex w-100" style={{marginTop:'20px'}}>
+                <div style={{width:'30%', marginRight:'10px'}}>
                     <SideFilter selectedPlace={defaultPlace} onCheckboxOfPlacesChange={onCheckboxOfPlacesChange} onFullTimeFilterChange={onFullTimeFilterChange}></SideFilter>
                 </div>
                 <div style={{width:'70%'}}>

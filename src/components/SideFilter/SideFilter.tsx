@@ -30,7 +30,7 @@ function SideFilter(props: {selectedPlace:string, onCheckboxOfPlacesChange:Funct
                 </label>
                 <h4 style={{color:'#B9BDCF'}}>LOCATION</h4>
                 <div className="location-filter-container d-flex align-items-center">
-                    <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faGlobeAmericas} style={{color:'#B9BDCF', marginLeft:'5px'}}></FontAwesomeIcon>
                     <input name="filter" placeholder="City, state, zip code or country" className="location-filter" value={filterValue} onChange={(e) => {onFilterChange(e)}}></input>
                 </div>
                 <ul className="locations-check-list">
