@@ -8,6 +8,10 @@
     padding: 10px;
 }
 
+.card-container:hover{
+    cursor: pointer;
+}
+
 .card-container h5{
     margin: 0;
     font-size: 12px;

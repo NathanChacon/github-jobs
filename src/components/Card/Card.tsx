@@ -1,16 +1,17 @@
 import './Card.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faGlobeAmericas, faClock} from '@fortawesome/free-solid-svg-icons'
-interface Card{
+export interface CardProps{
     imgSrc:string, 
     title:string, 
     description:string, 
     specialMarker?:string,
-    sideContent:Array<any>
+    sideContent:Array<any>,
+    onClick:Function
 }
-function Card(props:Card){
+function Card(props:CardProps){
     return (
-        <div className="card-container d-flex align-items-center w-100">
+        <div className="card-container d-flex align-items-center w-100" onClick={() => props.onClick()}>
             <div className="image-container">
                 <img src={props.imgSrc}></img>
             </div>

@@ -2,7 +2,7 @@ import './Home.css'
 import axios from '../../config/axios'
 import MainFilter from '../../components/MainFilter/MainFilter'
 import SideFilter from '../../components/SideFilter/SideFilter'
-import Card from '../../components/Card/Card'
+import Card, {CardProps} from '../../components/Card/Card'
 import { useEffect, useState } from 'react'
 interface Position {
     company: string,
@@ -16,14 +16,6 @@ interface Position {
     title: string
     type: string
     url: string   
-}
-
-interface CardProps{
-    imgSrc:string, 
-    title:string, 
-    description:string, 
-    specialMarker?:string,
-    sideContent:Array<any>
 }
 
 function Home(){
@@ -52,7 +44,8 @@ function Home(){
                 title:position.company, 
                 description:position.title, 
                 specialMarker:position.type === 'Full Time' ? position.type : '',
-                sideContent:[{value:position.location, icon:'globe'}, {value:new Date(position.created_at).toDateString(), icon:'time'}]
+                sideContent:[{value:position.location, icon:'globe'}, {value:new Date(position.created_at).toDateString(), icon:'time'}],
+                onClick: () => {onClickPosition(position.id)}
             }
         })
 
@@ -83,6 +76,10 @@ function Home(){
 
     const onFullTimeFilterChange = (value:boolean) => {
         console.log(value)
+    }
+
+    const onClickPosition = (positionId:string) => {
+        console.log(positionId)
     }
 
     return (
