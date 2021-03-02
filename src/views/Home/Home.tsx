@@ -4,6 +4,7 @@ import MainFilter from '../../components/MainFilter/MainFilter'
 import SideFilter from '../../components/SideFilter/SideFilter'
 import Card, {CardProps} from '../../components/Card/Card'
 import { useEffect, useState } from 'react'
+import { getJSDocParameterTags } from 'typescript'
 interface Position {
     company: string,
     company_logo: string
@@ -18,17 +19,25 @@ interface Position {
     url: string   
 }
 
+interface Filter{
+  search:string,
+  location:string,
+  description:string,
+  full_time:string
+}
+
 function Home(){
     const defaultPlace:string = "New York"
     const [cards, setCards] = useState<Array<CardProps>>([])
+    const [positionsFilter, setPositionsFilter] = useState<Filter>({search:'',location:'',description:'', full_time:''})
+
     useEffect(() => {
         startData()
-    }, [])
+    }, [positionsFilter])
 
     const startData = async () => {
         try{
-            const positions:Array<Position> = await getPositions()
-            console.log(positions)
+            const positions:Array<Position> = await getPositions(positionsFilter)
             const cards:Array<CardProps> = getCards(positions)
             setCards(cards)
         }
@@ -50,11 +59,25 @@ function Home(){
         })
 
         return cards
-    }   
+    }
+    
+    const getParams = (filter:Filter):string => {
+        const params = new URLSearchParams({...filter})
+        let keysForDel:Array<any> = []
+        params.forEach((v, k) => {
+            if (v == '')
+              keysForDel.push(k);
+          });
+          keysForDel.forEach(k => {
+            params.delete(k);
+          });
+        return params.toString()
+    }
 
-    const getPositions = ():Promise<Array<Position>> => {
+    const getPositions = (filter:Filter):Promise<Array<Position>> => {
+        const params = getParams(filter)
         return new Promise((resolve, reject) => {
-            axios.get('/positions.json')
+            axios.get(`/positions.json?${params}`)
             .then(
                 (response) => {
                     response.data ? resolve(response.data) : reject('Not Found')
@@ -67,15 +90,32 @@ function Home(){
     }
 
     const onFilterByJobProps = (string:string) => {
-        console.log(string)
+        setPositionsFilter({
+            ...positionsFilter,
+            search: string
+        })
+    }
+
+    const onFilterByPlace = (string:string) => {
+        console.log('yes', string)
+        setPositionsFilter({
+            ...positionsFilter,
+            location: string
+        })
     }
  
     const onCheckboxOfPlacesChange = (value:string) => {
-        console.log(value)
+        setPositionsFilter({
+            ...positionsFilter,
+            location: value
+        })
     }
 
     const onFullTimeFilterChange = (value:boolean) => {
-        console.log(value)
+        setPositionsFilter({
+            ...positionsFilter,
+            full_time: value ? 'true' :  'false'
+        })
     }
 
     const onClickPosition = (positionId:string) => {
@@ -89,7 +129,7 @@ function Home(){
             </div>
             <div className="d-flex w-100" style={{marginTop:'20px'}}>
                 <div style={{width:'30%', marginRight:'10px'}}>
-                    <SideFilter selectedPlace={defaultPlace} onCheckboxOfPlacesChange={onCheckboxOfPlacesChange} onFullTimeFilterChange={onFullTimeFilterChange}></SideFilter>
+                    <SideFilter selectedPlace={defaultPlace} onCheckboxOfPlacesChange={onCheckboxOfPlacesChange} onFullTimeFilterChange={onFullTimeFilterChange} onFilterByPlace={onFilterByPlace}></SideFilter>
                 </div>
                 <div style={{width:'70%'}}>
                     {cards.map((card,index) => {

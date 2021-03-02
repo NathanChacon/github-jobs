@@ -2,28 +2,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import './SideFilter.css'
 import { useState } from 'react'
-function SideFilter(props: {selectedPlace:string, onCheckboxOfPlacesChange:Function, onFullTimeFilterChange:Function}){
+function SideFilter(props: {selectedPlace:string, onCheckboxOfPlacesChange:Function, onFullTimeFilterChange:Function, onFilterByPlace:Function}){
     const defaultPlaces:Array<string> = ['London', 'Amsterdam', 'New York', 'Berlin']
     const [selectedCheckbox, setSelectedCheckbox] = useState<string>(props.selectedPlace)
     const [filterValue, setFilterValue] = useState('')
 
 
     const onCheckboxOfPlacesChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+        setFilterValue('')
         setSelectedCheckbox(event.target.value)
         props.onCheckboxOfPlacesChange(event.target.value)
     }
 
     const onFilterChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedCheckbox('')
         setFilterValue(event.target.value)
     }
 
     const onFullTimeFilterChange = (event:React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.checked)
+        props.onFullTimeFilterChange(event.target.checked)
+    }
+
+    const onFilterByPlace = (event:React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        props.onFilterByPlace(filterValue)
     }
 
     return (
         <div className="side-filter-container w-100">
-            <form>
+            <form onSubmit={(e) => {onFilterByPlace(e)}}>
                 <label className="checkbox">
                     <input type="checkbox" onChange={(e) => {onFullTimeFilterChange(e)}}></input> 
                     Full time 
