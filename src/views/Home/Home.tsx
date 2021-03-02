@@ -127,11 +127,11 @@ function Home(){
             <div className="main-search-container d-flex align-items-center justify-content-center">
                 <MainFilter onFilter={onFilterByJobProps}></MainFilter>
             </div>
-            <div className="d-flex w-100" style={{marginTop:'20px'}}>
-                <div style={{width:'30%', marginRight:'10px'}}>
+            <div className="content-wrapper d-flex w-100" style={{marginTop:'20px'}}>
+                <div className="side-filter-container">
                     <SideFilter selectedPlace={defaultPlace} onCheckboxOfPlacesChange={onCheckboxOfPlacesChange} onFullTimeFilterChange={onFullTimeFilterChange} onFilterByPlace={onFilterByPlace}></SideFilter>
                 </div>
-                <div style={{width:'70%'}}>
+                <div className="cards-container">
                     {cards.map((card,index) => {
                         return <Card {...card} key={index}></Card>
                     })}
