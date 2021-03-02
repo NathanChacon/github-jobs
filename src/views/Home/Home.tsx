@@ -47,7 +47,9 @@ function Home(){
                 title:position.company, 
                 description:position.title, 
                 specialMarker:position.type === 'Full Time' ? position.type : '',
-                sideContent:[{value:position.location, icon:'globe'}, {value:new Date(position.created_at).toDateString(), icon:'time'}],
+                sideContent:[
+                    {value:position.location, icon:'globe'}, 
+                    {value:getFormatedDate(position.created_at), icon:'time'}],
                 onClick: () => {onClickPosition(position.id)}
             }
         })
@@ -114,6 +116,11 @@ function Home(){
     const onClickPosition = (positionId:string) => {
         history.push(`/position/${positionId}`)
     }
+
+    const getFormatedDate = (date:string):string => {
+        const formattedDate = new Date(date).toISOString().slice(0,10);
+        return formattedDate
+    }   
 
     return (
         <section className="main-container">
