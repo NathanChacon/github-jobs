@@ -6,6 +6,11 @@
     color:#334680;
     min-height: 114px;
     padding: 10px;
+    transition: 0.2s  background-color ease-in-out;
+}
+
+.card-container:hover{
+    background-color: rgb(241, 241, 241);
 }
 
 .card-container:hover{

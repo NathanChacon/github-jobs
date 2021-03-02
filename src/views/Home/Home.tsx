@@ -1,4 +1,5 @@
 import './Home.css'
+import React from 'react';
 import axios from '../../config/axios'
 import MainFilter from '../../components/MainFilter/MainFilter'
 import SideFilter from '../../components/SideFilter/SideFilter'
@@ -6,6 +7,7 @@ import Card, {CardProps} from '../../components/Card/Card'
 import {useHistory} from "react-router-dom";
 import { useEffect, useState } from 'react'
 import {Position} from '../../models/position'
+import Loader from "react-loader-spinner";
 
 interface Filter{
   search:string,
@@ -19,6 +21,7 @@ function Home(){
     const defaultPlace:string = "New York"
     const [cards, setCards] = useState<Array<CardProps>>([])
     const [positionsFilter, setPositionsFilter] = useState<Filter>({search:'',location:'',description:'', full_time:''})
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEffect(() => {
         startData()
@@ -26,9 +29,11 @@ function Home(){
 
     const startData = async () => {
         try{
+            setIsLoading(true)
             const positions:Array<Position> = await getPositions(positionsFilter)
             const cards:Array<CardProps> = getCards(positions)
             setCards(cards)
+            setIsLoading(false)
         }
         catch(error){
             console.log(error)
@@ -120,9 +125,23 @@ function Home(){
                     <SideFilter selectedPlace={defaultPlace} onCheckboxOfPlacesChange={onCheckboxOfPlacesChange} onFullTimeFilterChange={onFullTimeFilterChange} onFilterByPlace={onFilterByPlace}></SideFilter>
                 </div>
                 <div className="cards-container">
-                    {cards.map((card,index) => {
-                        return <Card {...card} key={index}></Card>
-                    })}
+                    {
+                        !isLoading
+                        ?<React.Fragment> 
+                            {cards.map((card,index) => {
+                                return <Card {...card} key={index}></Card>
+                            })}
+                        </React.Fragment>
+                        :<div className="d-flex align-items-center justify-content-center" style={{width:'100%'}}>
+                            <Loader 
+                                type="ThreeDots"
+                                color="#1E86FF"
+                                width={50}
+                                height={50}
+                            />
+                        </div> 
+
+                    }
                 </div>
             </div>
         </section>
