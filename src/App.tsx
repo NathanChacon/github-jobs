@@ -21,6 +21,9 @@ function App() {
           <PositionDescription></PositionDescription>
         </Route>
       </Switch>
+      <footer className="footer d-flex align-items-center justify-content-center">
+        <p>created by Nathan Chacon - devChallenges.io</p>
+      </footer>
     </Router>
   );
 }
