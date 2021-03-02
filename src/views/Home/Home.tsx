@@ -3,21 +3,9 @@ import axios from '../../config/axios'
 import MainFilter from '../../components/MainFilter/MainFilter'
 import SideFilter from '../../components/SideFilter/SideFilter'
 import Card, {CardProps} from '../../components/Card/Card'
+import {useHistory} from "react-router-dom";
 import { useEffect, useState } from 'react'
-import { getJSDocParameterTags } from 'typescript'
-interface Position {
-    company: string,
-    company_logo: string
-    company_url: string
-    created_at: string
-    description: string
-    how_to_apply: string
-    id: string
-    location: string
-    title: string
-    type: string
-    url: string   
-}
+import {Position} from '../../models/position'
 
 interface Filter{
   search:string,
@@ -27,6 +15,7 @@ interface Filter{
 }
 
 function Home(){
+    const history = useHistory()
     const defaultPlace:string = "New York"
     const [cards, setCards] = useState<Array<CardProps>>([])
     const [positionsFilter, setPositionsFilter] = useState<Filter>({search:'',location:'',description:'', full_time:''})
@@ -97,7 +86,6 @@ function Home(){
     }
 
     const onFilterByPlace = (string:string) => {
-        console.log('yes', string)
         setPositionsFilter({
             ...positionsFilter,
             location: string
@@ -119,7 +107,7 @@ function Home(){
     }
 
     const onClickPosition = (positionId:string) => {
-        console.log(positionId)
+        history.push(`/position/${positionId}`)
     }
 
     return (

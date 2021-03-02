@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './views/Home/Home'
+import PositionDescription from './views/PositionDescription/PositionDescription'
 import './styles/utils.css'
 import {
   BrowserRouter as Router,
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home></Home>
+        </Route>
+        <Route exact path="/position/:positionId">
+          <PositionDescription></PositionDescription>
         </Route>
       </Switch>
     </Router>

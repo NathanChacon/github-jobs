@@ -1,0 +1,123 @@
+.description-container{
+    width: 100%;
+    min-height: 100vh;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 10px;
+}
+
+.side-info-container{
+    font-size: 14px;
+    width: 20%;
+}
+
+.side-info-container h4{
+    color: #334680;
+}
+
+.full-time-marker{
+    font-size: 12px;
+    margin-left: 10px;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    border: 1px solid #334680;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.side-info-container span{
+    color: #334680;
+}
+a{
+    word-wrap: break-word;
+    font-weight: 500;
+    color:#1E86FF;
+}
+
+a{
+    text-decoration: none;
+}
+
+.article-container{
+    width: 70%;
+}
+
+.article-container .title{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #334680;
+}
+
+.article-container .content{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+    color: #334680;
+}
+
+.visual-content{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.visual-content .image{
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.visual-content .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.visual-content h5{
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #334680;
+}
+
+.visual-content p{
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #B9BDCF;
+}
+
+
+@media(max-width:900px){
+    .description-container{
+        flex-direction: column;
+    }
+    .article-container .title{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .article-container .title span{
+        margin: 0;
+        margin-top: 7px;
+    }
+    .side-info-container{
+        width: 100%;
+    }
+    .article-container{
+        width: 100%;
+    }
+}
