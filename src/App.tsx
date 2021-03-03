@@ -5,7 +5,7 @@ import Home from './views/Home/Home'
 import PositionDescription from './views/PositionDescription/PositionDescription'
 import './styles/utils.css'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
