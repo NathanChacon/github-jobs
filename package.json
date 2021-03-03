@@ -2,7 +2,6 @@
   "name": "github-jobs",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://cors-proxy.htmldriven.com/?",
   "homepage": "http://NathanChacon.github.io/github-jobs/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",

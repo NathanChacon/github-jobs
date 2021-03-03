@@ -1,4 +1,4 @@
 import axios from 'axios';
 export default axios.create({
-  baseURL: 'https://jobs.github.com/'
+  baseURL: 'https://cors.io/?https://jobs.github.com/'
 })
