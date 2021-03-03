@@ -24,8 +24,8 @@ function Card(props:CardProps){
                     </div>
                     <div className="side-content d-flex align-items-center">
                         {
-                            props.sideContent.map((sideContent) => {
-                                return <p style={{marginLeft:'15px'}}>
+                            props.sideContent.map((sideContent, index) => {
+                                return <p style={{marginLeft:'15px'}} key={index}>
                                         {
                                             sideContent.icon === 'globe' ?  <FontAwesomeIcon icon={faGlobeAmericas} style={{marginRight:"5px"}}></FontAwesomeIcon> : ''
                                         }

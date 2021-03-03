@@ -41,8 +41,8 @@ function SideFilter(props: {selectedPlace:string, onCheckboxOfPlacesChange:Funct
                     <input name="filter" placeholder="City, state, zip code or country" className="location-filter" value={filterValue} onChange={(e) => {onFilterChange(e)}}></input>
                 </div>
                 <ul className="locations-check-list">
-                    {defaultPlaces.map((place) => {
-                        return <li>
+                    {defaultPlaces.map((place, index) => {
+                        return <li key={index}>
                                 <label className="checkbox">
                                     <input
                                         name='places'
